@@ -158,7 +158,7 @@ trans_sflr <- function(Data, grid, lambda_factor = 1, ifadap = F){
   
   
   
-  id1 <- sample.split(Y = Y_target, SplitRatio = .5)
+  id1 <- sample.split(Y = Y_target, SplitRatio = .7)
   X_train <- subset(X_target, id1 == T); Y_train <- subset(Y_target, id1 == T)
   X_train_center <- sweep(X_train, 2 , colMeans(X_train));  Y_train_center <- Y_train - mean(Y_train)
   
@@ -288,13 +288,12 @@ Qagg_func <- function(B, A, X_test, Y_test, grid , total_step = 100, selection =
 Staragg_func <- function(B, A, X_test, Y_test, grid, conflevel = 0.01, Data){
   
   id2 <- c(1:length(Y_test))
-  index <- sample(x = id2, size = .5*length(id2), replace = F)
-  # index <- sample( x = c(1:length(Y_test)), size = .5*length(Y_test), replace = F)
+  index <- sample(x = id2, size = .7*length(id2), replace = F)
   X1 <- X_test[index,]; Y1 <- Y_test[index]
   X2 <- X_test[-index,]; Y2 <- Y_test[-index]
 
 
-  id2 <- sample.split(Y = Y_test, SplitRatio = .5)
+  id2 <- sample.split(Y = Y_test, SplitRatio = .7)
   X1 <- subset(X_test, id2 == T); Y1 <- subset(Y_test, id2 == T)
   X2 <- subset(X_test, id2 == F); Y2 <- subset(Y_test, id2 == F)
   
@@ -502,7 +501,7 @@ trans_detect <- function( Data, grid, alpha = 1.4,  ifadap = F, Eps = .01, lambd
     MSE_trans2 <- c()
     
     for(II in 1:20){
-      target_index <- sample( x = c(1:N_T), size = .5*N_T, replace = F)
+      target_index <- sample( x = c(1:N_T), size = .7*N_T, replace = F)
       
       train_X <- X_target[target_index, ]
       train_Y <- Y_target[target_index]
